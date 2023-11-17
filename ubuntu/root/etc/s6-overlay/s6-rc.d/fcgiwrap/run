@@ -1,5 +1,0 @@
-#!/command/exec bash
-SOCKET=/run/fcgiwrap.socket
-/usr/sbin/fcgiwrap -f -c 1 -s unix:${SOCKET}
-chown nginx: ${SOCKET}
-chmod 700 ${SOCKET}

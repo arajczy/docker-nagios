@@ -1,2 +1,0 @@
-#!/command/exec bash
-cp /etc/s6-overlay/files/www.conf /etc/php/$(ls /etc/php)/fpm/pool.d/www.conf

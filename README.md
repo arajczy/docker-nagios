@@ -6,13 +6,16 @@
 <!--
 ![GitHub Repo stars](https://img.shields.io/github/stars/arajczy/docker-nagios?style=for-the-badge)
 -->
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/arajczy/nagios/latest?style=for-the-badge&logo=docker)
+![Docker Pulls](https://img.shields.io/docker/pulls/arajczy/nagios?style=for-the-badge&logo=docker)
+![Docker Image Version (tag latest semver)](https://img.shields.io/docker/v/arajczy/nagios/latest?style=for-the-badge&logo=docker)
 
 [Nagios Core](https://www.nagios.org/projects/nagios-core/) serves as the basic event scheduler, event processor, and alert manager for elements that are monitored. It features several APIs that are used to extend its capabilities to perform additional tasks, is implemented as a daemon written in C for performance reasons, and is designed to run natively on Linux/\*nix systems.
 
 | Product | Version |
 | ------- | ------- |
 | [Nagios Core](https://github.com/NagiosEnterprises/nagioscore) | 4.5.0 |
-| [Nagios Plugins](https://github.com/nagios-plugins/nagios-plugins) | 2.4.7 |
+| [Nagios Plugins](https://github.com/nagios-plugins/nagios-plugins) | 2.4.6 |
 | [NCPA](https://github.com/NagiosEnterprises/ncpa) | 2.4.1 |
 | [NRPE](https://github.com/NagiosEnterprises/nrpe) | 4.1.0 |
 | [NSCA](https://github.com/NagiosEnterprises/nsca) | 2.10.2 |
