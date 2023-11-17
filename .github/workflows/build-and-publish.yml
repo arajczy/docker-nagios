@@ -31,7 +31,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Log into GitHub Container registry
-        if: github.event_name != 'pull_request'
         uses: docker/login-action@v3.0.0
         with:
           registry: ghcr.io
@@ -39,7 +38,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       # https://github.com/docker/metadata-action
-      - name: Extract metadata for Fedora
+      - name: Extract metadata for
         id: meta
         uses: docker/metadata-action@v5.0.0
         with:
@@ -56,7 +55,7 @@ jobs:
         id: build-and-push
         uses: docker/build-push-action@v5.1.0
         with:
-          context: ./fedora
+          context: .
           platforms: linux/amd64
           push: true
           tags: ${{ steps.meta.outputs.tags }}
