@@ -1,10 +1,6 @@
 ARG CODENAME=jammy
 FROM ubuntu:${CODENAME}
 
-LABEL org.opencontainers.image.author="Adam Rajczy <arajczy@gmail.com>" \
-      org.opencontainers.image.description="Nagios Core" \
-      org.opencontainers.image.version="1.0.0"
-
 ARG CODENAME
 ARG PHP_VERSION="8.1"
 ARG DEBIAN_FRONTEND="noninteractive"

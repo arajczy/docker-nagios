@@ -1,9 +1,5 @@
 FROM quay.io/fedora/fedora-minimal:39
 
-LABEL org.opencontainers.image.author="Adam Rajczy <arajczy@gmail.com>" \
-      org.opencontainers.image.description="Nagios Core" \
-      org.opencontainers.image.version="1.0.0"
-
 ARG S6_OVERLAY_VERSION="3.1.6.0"
 ARG MONGOSH_VERSION="2.0.2"
 ARG NAGIOS_VERSION="4.5.0"
