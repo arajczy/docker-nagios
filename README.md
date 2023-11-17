@@ -129,16 +129,6 @@ podman run \
 
 On Linux hosts with podman installed you can run this container as a systemd service, too.
 
-#### steps to enable nagios container as a systemd service
-1.  copy below content and paste it to `$HOME/.config/containers/systemd/nagios.container`
-2.  perform a systemd daemon-reload with `systemctl --user daemon-reload`
-3.  start service with `systemctl --user start nagios.service`.
-
-#### steps to disable nagios container service
-1.  enter commands: `systemctl --user stop nagios.service`
-2.  remove container file: `$HOME/.config/containers/systemd/nagios.container`
-3.  perform a systemd daemon-reload with `systemctl --user daemon-reload`
-
 ```ini
 [Unit]
 Description=Nagios Core monitoring container
@@ -172,6 +162,16 @@ TimeoutStopSec=70
 [Install]
 WantedBy=default.target
 ```
+
+#### steps to enable nagios container as a systemd service
+1.  copy below content and paste it to `$HOME/.config/containers/systemd/nagios.container`
+2.  perform a systemd daemon-reload with `systemctl --user daemon-reload`
+3.  start service with `systemctl --user start nagios.service`.
+
+#### steps to disable nagios container service
+1.  enter commands: `systemctl --user stop nagios.service`
+2.  remove container file: `$HOME/.config/containers/systemd/nagios.container`
+3.  perform a systemd daemon-reload with `systemctl --user daemon-reload`
 
 </details>
 
