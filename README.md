@@ -1,19 +1,20 @@
 # [arajczy/nagios](https://github.com/arajczy/docker-nagios)
 
 [![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/arajczy/docker-nagios/build-and-publish.yml?style=for-the-badge&logo=github)](https://github.com/users/arajczy/packages?repo_name=docker-nagios)
-[![GitHub License](https://img.shields.io/github/license/arajczy/docker-nagios?style=for-the-badge&logo=github&color=f56fa1)](https://github.com/arajczy/docker-nagios/blob/trunk/LICENCE)
+[![GitHub License](https://img.shields.io/github/license/arajczy/docker-nagios?style=for-the-badge&logo=github&color=750014)](https://github.com/arajczy/docker-nagios/blob/trunk/LICENCE)
 [![GitHub last commit (branch)](https://img.shields.io/github/last-commit/arajczy/docker-nagios/trunk?style=for-the-badge&logo=github)](https://github.com/arajczy/docker-nagios/commits/trunk)
+![GitHub Repo stars](https://img.shields.io/github/stars/arajczy/docker-nagios)
 
 [Nagios Core](https://www.nagios.org/projects/nagios-core/) serves as the basic event scheduler, event processor, and alert manager for elements that are monitored. It features several APIs that are used to extend its capabilities to perform additional tasks, is implemented as a daemon written in C for performance reasons, and is designed to run natively on Linux/\*nix systems.
 
 | Product | Version |
 | ------- | ------- |
-| Nagios Core | 4.4.14 |
-| Nagios Plugins | 2.4.6 |
-| NCPA | 2.4.1 |
-| NRPE | 4.1.0 |
-| NSCA | 2.10.2 |
-| NAGIOSTV | 0.8.7 |
+| [Nagios Core](https://github.com/NagiosEnterprises/nagioscore) | 4.5.0 |
+| [Nagios Plugins](https://github.com/nagios-plugins/nagios-plugins) | 2.4.7 |
+| [NCPA](https://github.com/NagiosEnterprises/ncpa) | 2.4.1 |
+| [NRPE](https://github.com/NagiosEnterprises/nrpe) | 4.1.0 |
+| [NSCA](https://github.com/NagiosEnterprises/nsca) | 2.10.2 |
+| [NAGIOSTV](https://github.com/chriscareycode/nagiostv-react) | 0.8.7 |
 
 ## Application Setup
 
