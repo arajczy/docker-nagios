@@ -24,7 +24,7 @@ jobs:
       # https://github.com/sigstore/cosign-installer
       - name: Install cosign 
         if: github.event_name != 'pull_request'
-        uses: sigstore/cosign-installer@v3.1.1
+        uses: sigstore/cosign-installer@v3.2.0
         with:
           cosign-release: 'v2.1.1'
 
@@ -74,7 +74,7 @@ jobs:
       # https://github.com/docker/build-push-action
       - name: Build and push image fedora
         id: fedora-build-and-push
-        uses: docker/build-push-action@v5.0.0
+        uses: docker/build-push-action@v5.1.0
         with:
           context: ./fedora
           platforms: linux/amd64
@@ -86,7 +86,7 @@ jobs:
 
       - name: Build and push image ubuntu
         id: ubuntu-build-and-push
-        uses: docker/build-push-action@v5.0.0
+        uses: docker/build-push-action@v5.1.0
         with:
           context: ./ubuntu
           platforms: linux/amd64
