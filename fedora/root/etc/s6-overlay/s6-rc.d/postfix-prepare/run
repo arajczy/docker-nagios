@@ -1,0 +1,28 @@
+#!/command/with-contenv bash
+
+. /etc/s6-overlay/lib/logger
+
+if [ ! -z ${MAIL_RELAY_HOST} ]; then
+  info "Configure postfix server"
+  echo ${NAGIOS_FQDN} > /etc/mailname
+  postconf \
+    inet_interfaces=all \
+    inet_protocols=ipv4 \
+    myhostname=${HOSTNAME} \
+    mydestination="\&myhostname, ${NAGIOS_FQDN}, localhost.hu, localhost" \
+    myorigin=/etc/mailname \
+    relayhost=${MAIL_RELAY_HOST} \
+    smtp_sasl_auth_enable=yes \
+    smtp_sasl_password_maps=hash:/etc/postfix/password_maps \
+    smtp_sasl_security_options=noanonymous \
+    smtp_tls_CAfile=/etc/postfix/cacert.pem \
+    smtp_use_tls=yes
+
+  if [ ! -z ${MAIL_ADDRESS} ] && [ ! -z ${MAIL_PASS} ]; then
+    info "Setting mail relay authentication"
+    echo "${MAIL_RELAY_HOST} ${MAIL_ADDRESS}:${MAIL_PASS}" > /etc/postfix/password_maps
+    postmap /etc/postfix/password_maps
+    chmod 400 /etc/postfix/password_maps.db
+    rm /etc/postfix/password_maps
+  fi
+fi

@@ -1,0 +1,48 @@
+#!/command/with-contenv bash
+
+. /etc/s6-overlay/lib/logger
+
+print_welcome_page
+
+info "handling ownership of nagios files & folders"
+chown -R nagios: /usr/local/nagios
+chmod 0755 /usr/local/nagios
+
+if [ ! -f /usr/local/nagios/etc/htpasswd.users ]; then
+  info "$(htpasswd -c -b -B /usr/local/nagios/etc/htpasswd.users $NAGIOSADMIN_USER $NAGIOSADMIN_PASS 2>&1)"
+  chown -R nagios:nagios /usr/local/nagios/etc/htpasswd.users
+
+  info "Configure nagios for admin user $NAGIOSADMIN_USER"
+  sed -i -E "s/^(authorized_for_.*)=.*$/\1=$NAGIOSADMIN_USER/" /usr/local/nagios/etc/cgi.cfg
+fi
+
+
+if [ -n $NAGIOS_STARTPAGE ]; then
+  case $NAGIOS_STARTPAGE in
+    services)
+      START_PAGE='/nagios/cgi-bin/status.cgi?host=all'
+    ;;
+    hosts)
+      START_PAGE='/nagios/cgi-bin/status.cgi?hostgroup=all\&style=hostdetail'
+    ;;
+    overview)
+      START_PAGE='/nagios/cgi-bin/status.cgi?hostgroup=all\&style=overview'
+    ;;
+    summary)
+      START_PAGE='/nagios/cgi-bin/status.cgi?hostgroup=all\&style=summary'
+    ;;
+    grid)
+      START_PAGE='/nagios/cgi-bin/status.cgi?hostgroup=all\&style=grid'
+    ;;
+    default|*)
+      START_PAGE='main.php'
+    ;;
+  esac
+  info "Setting nagios starting page to '$NAGIOS_STARTPAGE'"
+  sed -i "s,main.php,$START_PAGE," /usr/local/nagios/share/index.php
+fi
+
+if [ -n $NAGIOS_THEME ] && [ $NAGIOS_THEME != "default" ]; then
+  info "Set nagios theme to $NAGIOS_THEME"
+  cp -r /usr/local/nagios/themes/$NAGIOS_THEME/stylesheets /usr/local/nagios/share/
+fi

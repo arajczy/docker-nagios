@@ -1,0 +1,1 @@
+spawn-fcgi -u nginx -g nginx -s /run/fcgiwrap.socket -M 0700 -F 1 -P /run/fcgi.pid -- /usr/sbin/fcgiwrap
