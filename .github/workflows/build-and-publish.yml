@@ -42,7 +42,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       # https://github.com/docker/metadata-action
-      - name: Extract metadata for Debian
+      - name: Extract metadata for Fedora
         id: fedora-meta
         uses: docker/metadata-action@v5.0.0
         with:
