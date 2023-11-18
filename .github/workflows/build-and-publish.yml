@@ -53,9 +53,12 @@ jobs:
             ghcr.io/arajczy/nagios:4
             ghcr.io/arajczy/nagios:4.5.0
           labels: |
-            org.opencontainers.image.author=Adam Rajczy
+            org.opencontainers.image.authors=Adam Rajczy
             org.opencontainers.image.description=Nagios Core
+            org.opencontainers.image.licenses=MIT
+            org.opencontainers.image.source=https://github.com/arajczy/docker-nagios
             org.opencontainers.image.title=nagios
+            org.opencontainers.image.url=https://github.com/arajczy/docker-nagios
             org.opencontainers.image.version=4.5.0
           cache-from: type=gha
           cache-to: type=gha,mode=max

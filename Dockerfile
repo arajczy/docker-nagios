@@ -2,6 +2,7 @@ FROM quay.io/fedora/fedora-minimal:39
 
 ARG S6_OVERLAY_VERSION="3.1.6.0"
 ARG MONGOSH_VERSION="2.0.2"
+ARG CHECK-MONGODB-PLUGINS_VERSION="1.0.0"
 ARG NAGIOS_VERSION="4.5.0"
 ARG NAGIOS_PLUGINS_VERSION="2.4.6"
 ARG NAGIOS_THEMES_VERSION="0.2.0"
@@ -92,8 +93,8 @@ ADD --chmod=0644 https://www.thawte.com/roots/thawte_Premium_Server_CA.pem /etc/
 # Install NCPA
 ADD --chmod=0755 https://raw.githubusercontent.com/NagiosEnterprises/ncpa/v${NCPA_VERSION}/client/check_ncpa.py /usr/local/nagios/libexec/
 # Install check-mongodb-plugins
-ADD --chmod=0755 https://raw.githubusercontent.com/m-erhardt/check-mongodb-plugins/master/check_mongodb_stats.py /usr/local/nagios/libexec/
-ADD --chmod=0755 https://raw.githubusercontent.com/m-erhardt/check-mongodb-plugins/master/check_mongodb_dbsize.py /usr/local/nagios/libexec/
+ADD --chmod=0755 https://raw.githubusercontent.com/m-erhardt/check-mongodb-plugins/${CHECK-MONGODB-PLUGINS_VERSION}/check_mongodb_stats.py /usr/local/nagios/libexec/
+ADD --chmod=0755 https://raw.githubusercontent.com/m-erhardt/check-mongodb-plugins/${CHECK-MONGODB-PLUGINS_VERSION}/check_mongodb_dbsize.py /usr/local/nagios/libexec/
 
 COPY root /
 
