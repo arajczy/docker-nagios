@@ -93,8 +93,8 @@ ADD --chmod=0644 https://www.thawte.com/roots/thawte_Premium_Server_CA.pem /etc/
 # Install NCPA
 ADD --chmod=0755 https://raw.githubusercontent.com/NagiosEnterprises/ncpa/v${NCPA_VERSION}/client/check_ncpa.py /usr/local/nagios/libexec/
 # Install check-mongodb-plugins
-ADD --chmod=0755 https://raw.githubusercontent.com/m-erhardt/check-mongodb-plugins/${CHECK_MONGODB_PLUGINS_VERSION}/check_mongodb_stats.py /usr/local/nagios/libexec/
-ADD --chmod=0755 https://raw.githubusercontent.com/m-erhardt/check-mongodb-plugins/${CHECK_MONGODB_PLUGINS_VERSION}/check_mongodb_dbsize.py /usr/local/nagios/libexec/
+ADD --chmod=0755 https://raw.githubusercontent.com/m-erhardt/check-mongodb-plugins/v${CHECK_MONGODB_PLUGINS_VERSION}/check_mongodb_stats.py /usr/local/nagios/libexec/
+ADD --chmod=0755 https://raw.githubusercontent.com/m-erhardt/check-mongodb-plugins/v${CHECK_MONGODB_PLUGINS_VERSION}/check_mongodb_dbsize.py /usr/local/nagios/libexec/
 
 COPY root /
 
