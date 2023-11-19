@@ -37,8 +37,7 @@ docker pull ghcr.io/arajczy/nagios:latest
 
 ## Usage
 
-<details>
-<summary>docker cli</summary>
+### docker cli
 
 ```sh
 docker run \
@@ -62,10 +61,7 @@ docker run \
     ghcr.io/arajczy/nagios:latest
 ```
 
-</details>
-
-<details>
-<summary>podman cli</summary>
+### podman cli
 
 ```sh
 podman run \
@@ -90,10 +86,7 @@ podman run \
     ghcr.io/arajczy/nagios:latest
 ```
 
-</details>
-
-<details>
-<summary>docker-compose</summary>
+### docker-compose
 
 ```yaml
     ---
@@ -126,10 +119,7 @@ podman run \
         nagios-var:
 ```
 
-</details>
-
-<details>
-<summary>systemd container service</summary>
+### systemd container service
 
 On Linux hosts with podman installed you can run this container as a systemd service, too.
 
@@ -176,8 +166,6 @@ WantedBy=default.target
 1.  enter commands: `systemctl --user stop nagios.service`
 2.  remove container file: `$HOME/.config/containers/systemd/nagios.container`
 3.  perform a systemd daemon-reload with `systemctl --user daemon-reload`
-
-</details>
 
 ## Parameters
 
