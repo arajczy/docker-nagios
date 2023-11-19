@@ -4,7 +4,7 @@
 ![Docker Pulls](https://img.shields.io/docker/pulls/arajczy/nagios?logo=docker)
 [![GitHub License](https://img.shields.io/github/license/arajczy/docker-nagios?logo=github&color=750014)](https://github.com/arajczy/docker-nagios/blob/trunk/LICENCE)
 [![GitHub last commit (branch)](https://img.shields.io/github/last-commit/arajczy/docker-nagios/trunk?logo=github)](https://github.com/arajczy/docker-nagios/commits/trunk)
-[![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/arajczy/docker-nagios/build-and-publish.yml?logo=github)](https://github.com/users/arajczy/packages?repo_name=docker-nagios)
+[![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/arajczy/docker-nagios/build-and-publish.yml?logo=github)](https://github.com/arajczy/docker-nagios/pkgs/container/nagios)
 [![GitHub issues](https://img.shields.io/github/issues/arajczy/docker-nagios?logo=github)](https://github.com/arajczy/docker-nagios/issues/new/choose)
 
 [Nagios Core](https://www.nagios.org/projects/nagios-core/) serves as the basic event scheduler, event processor, and alert manager for elements that are monitored. It features several APIs that are used to extend its capabilities to perform additional tasks, is implemented as a daemon written in C for performance reasons, and is designed to run natively on Linux/\*nix systems.

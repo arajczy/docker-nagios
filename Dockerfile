@@ -94,7 +94,7 @@ RUN microdnf -y --refresh upgrade && \
       --strip-components=1 \
       --exclude=README.md && \
     # cleanup \
-    microdnf -y remove automake gcc gcc-c++ kernel-devel make shadow-utils tar unzip xz && \
+    microdnf -y remove automake gcc gcc-c++ kernel-devel make tar unzip xz && \
     microdnf clean all && rm -rf /tmp/*
 
 # Root cert required for SMTP Relay
