@@ -43,6 +43,7 @@ ADD https://github.com/arajczy/nagios-themes/archive/refs/tags/nagios-themes-v${
 RUN microdnf -y --refresh upgrade && \
     microdnf -y --setopt install_weak_deps=False install \
       automake cyrus-sasl cyrus-sasl-plain fcgiwrap fping gcc gcc-c++ gzip httpd-tools iputils kernel-devel libdbi-devel mailx make mysql-devel net-snmp net-snmp-utils nginx openssl perl-FindBin perl-lib perl-Net-SNMP php php-fpm postfix postgresql-devel python python-pip python-nagiosplugin python-toml shadow-utils samba-client tar unzip xz && \
+    python -m pip install  --no-cache-dir -qq -U pip toml nagiosplugin && \
     # adjust ping permissions \
     chmod 4755 /usr/bin/ping && \
     # Add nagios user \
