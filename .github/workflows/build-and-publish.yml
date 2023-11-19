@@ -1,8 +1,10 @@
 name: Build and Publish
 on:
   push:
+    branches:
+      - 'trunk'
     tags:
-      - v*.*.*
+      - 'v*'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,7 +21,7 @@ jobs:
           cosign-release: 'v2.1.1'
       - name: Meta
         id: meta
-        uses: docker-metadata-action@v5.0.0
+        uses: docker-metadata-action@v5
         with:
           images: |
             arajczy/nagios
