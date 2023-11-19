@@ -1,8 +1,8 @@
 name: Build and Publish
 on:
   push:
-    branches:
-      - trunk
+    tags:
+      - v*.*.*
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,31 +13,34 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      # https://github.com/sigstore/cosign-installer
       - name: Install cosign 
         uses: sigstore/cosign-installer@v3.2.0
         with:
           cosign-release: 'v2.1.1'
-
-      # https://github.com/docker/setup-buildx-action
+      - name: Meta
+        id: meta
+        uses: docker-metadata-action@v5.0.0
+        with:
+          images: |
+            arajczy/nagios
+            ghcr.io/arajczy/nagios
+          tags: |
+            latest
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}
       - name: Set up Buildx
         uses: docker/setup-buildx-action@v3.0.0
-
-      # https://github.com/docker/login-action
-      - name: Log into Docker Hub
+      - name: Login to Docker Hub
         uses: docker/login-action@v3.0.0
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Log into GitHub Container registry
+      - name: Login to GitHub Container registry
         uses: docker/login-action@v3.0.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-      # https://github.com/docker/build-push-action
       - name: Build and push image
         id: build-and-push
         uses: docker/build-push-action@v5.1.0
@@ -45,24 +48,10 @@ jobs:
           context: .
           platforms: linux/amd64
           push: true
-          tags: |
-            arajczy/nagios:latest
-            arajczy/nagios:4
-            arajczy/nagios:4.5.0
-            ghcr.io/arajczy/nagios:latest
-            ghcr.io/arajczy/nagios:4
-            ghcr.io/arajczy/nagios:4.5.0
-          labels: |
-            org.opencontainers.image.authors=Adam Rajczy
-            org.opencontainers.image.description=Nagios Core
-            org.opencontainers.image.licenses=MIT
-            org.opencontainers.image.source=https://github.com/arajczy/docker-nagios
-            org.opencontainers.image.title=nagios
-            org.opencontainers.image.url=https://github.com/arajczy/docker-nagios
-            org.opencontainers.image.version=4.5.0
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-
       - name: Sign the published image
         env:
           TAGS: ${{ steps.meta.outputs.tags }}
