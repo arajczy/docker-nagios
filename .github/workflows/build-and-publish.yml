@@ -1,8 +1,6 @@
 name: Build and Publish
 on:
   push:
-    branches:
-      - 'trunk'
     tags:
       - 'v*'
 jobs:
@@ -28,6 +26,7 @@ jobs:
             ghcr.io/arajczy/nagios
           tags: |
             latest
+            type=refs,event
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}
       - name: Set up Buildx
