@@ -21,7 +21,7 @@ jobs:
           cosign-release: 'v2.1.1'
       - name: Meta
         id: meta
-        uses: docker-metadata-action@v5
+        uses: docker/metadata-action@v5
         with:
           images: |
             arajczy/nagios
