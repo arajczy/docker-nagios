@@ -1,10 +1,8 @@
 name: Build and Publish
 on:
   push:
-    branches:
-      - trunk
     tags:
-      - v*
+      - v*.*.*
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,7 +26,6 @@ jobs:
             ghcr.io/arajczy/nagios
           tags: |
             latest
-            type=ref,event=tag
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}
       - name: Set up Buildx
