@@ -2,9 +2,7 @@
 
 . /etc/s6-overlay/lib/logger
 
-print_welcome_page
-
-info "handling ownership of nagios files & folders"
+info "Configure nagios"
 chown -R nagios: /usr/local/nagios
 chmod 0755 /usr/local/nagios
 

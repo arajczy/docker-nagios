@@ -1,0 +1,5 @@
+#!/command/with-contenv bash
+
+. /etc/s6-overlay/lib/logger
+
+print_welcome_page

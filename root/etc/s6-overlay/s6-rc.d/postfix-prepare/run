@@ -3,7 +3,7 @@
 . /etc/s6-overlay/lib/logger
 
 if [ ! -z ${MAIL_RELAY_HOST} ]; then
-  info "Configure postfix server"
+  info "Configure postfix"
   echo ${NAGIOS_FQDN} > /etc/mailname
   postconf \
     inet_interfaces=all \
@@ -19,7 +19,7 @@ if [ ! -z ${MAIL_RELAY_HOST} ]; then
     smtp_use_tls=yes
 
   if [ ! -z ${MAIL_ADDRESS} ] && [ ! -z ${MAIL_PASS} ]; then
-    info "Setting mail relay authentication"
+    info "Configure smtp authentication"
     echo "${MAIL_RELAY_HOST} ${MAIL_ADDRESS}:${MAIL_PASS}" > /etc/postfix/password_maps
     postmap /etc/postfix/password_maps
     chmod 400 /etc/postfix/password_maps.db

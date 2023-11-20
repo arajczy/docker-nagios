@@ -1,4 +1,10 @@
 #!/command/exec bash
+
+. /etc/s6-overlay/lib/logger
+
 SOCKET=/run/fcgiwrap.sock
+
+info "Assign fcgiwrap socket to user nginx."
+
 chown nginx: ${SOCKET}
 chmod 700 ${SOCKET}

@@ -1,5 +1,9 @@
 #!/command/exec bash
 
+. /etc/s6-overlay/lib/logger
+
+info "Configure php-fpm"
+
 mkdir /run/php-fpm
 chown nginx: /run/php-fpm
 sed -i -E 's/^(user|group).*/\1 = nagios/' /etc/php-fpm.d/www.conf
