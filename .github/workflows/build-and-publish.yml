@@ -35,8 +35,8 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            ${{ REGISTRY_IMAGE }}
-            ghcr.io/${{ REGISTRY_IMAGE }}
+            ${{ env.REGISTRY_IMAGE }}
+            ghcr.io/${{ env.REGISTRY_IMAGE }}
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}
@@ -82,4 +82,4 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          repository: ${{ REGISTRY_IMAGE }}
+          repository: ${{ env.REGISTRY_IMAGE }}
