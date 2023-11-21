@@ -36,11 +36,11 @@ if [ -n ${NAGIOS_STARTPAGE} ]; then
       START_PAGE='main.php'
     ;;
   esac
-  info "Setting nagios starting page to ${NAGIOS_STARTPAGE}"
+  info "Set nagios starting page to ${BOLD}${NAGIOS_STARTPAGE}${RESET}"
   sed -i "s,main.php,${START_PAGE}," /usr/local/nagios/share/index.php
 fi
 
 if [ -n ${NAGIOS_THEME} ] && [ ${NAGIOS_THEME} != "default" ]; then
-  info "Set nagios theme to ${NAGIOS_THEME}"
+  info "Set nagios theme to ${BOLD}${NAGIOS_THEME}${RESET}"
   cp -r /usr/local/nagios/themes/${NAGIOS_THEME}/stylesheets /usr/local/nagios/share/
 fi
