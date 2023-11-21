@@ -19,7 +19,7 @@
 | [![MONGOSH](https://img.shields.io/github/v/tag/mongodb-js/mongosh?logo=github&label=MONGOSH)](https://github.com/mongodb-js/mongosh) | 2.1.0 |
 | [![Check-Mongodb Plugins](https://img.shields.io/github/v/tag/m-erhardt/check-mongodb-plugins?logo=github&label=Check-Mongodb%20Plugins)](https://github.com/m-erhardt/check-mongodb-plugins) | 1.0.0 |
 | [![NAGIOSTV](https://img.shields.io/github/v/tag/chriscareycode/nagiostv-react?logo=github&label=NAGIOSTV)](https://github.com/chriscareycode/nagiostv-react) | 0.8.7 |
-| [![s6-overlay](https://img.shields.io/github/v/tag/chriscareycode/nagiostv-react?logo=github&label=s6-overlay)](https://github.com/just-containers/s6-overlay) | 3.1.6.2 |
+| [![s6-overlay](https://img.shields.io/github/v/tag/just-containers/s6-overlay?logo=github&label=s6-overlay)](https://github.com/just-containers/s6-overlay) | 3.1.6.2 |
 
 ## Application Setup
 
