@@ -10,14 +10,16 @@
 [Nagios Core](https://www.nagios.org/projects/nagios-core/) serves as the basic event scheduler, event processor, and alert manager for elements that are monitored. It features several APIs that are used to extend its capabilities to perform additional tasks, is implemented as a daemon written in C for performance reasons, and is designed to run natively on Linux/\*nix systems.
 
 | Product | Version |
-| ------- | ------- |
-| [Nagios Core](https://github.com/NagiosEnterprises/nagioscore) | 4.5.0 |
-| [Nagios Plugins](https://github.com/nagios-plugins/nagios-plugins) | 2.4.6 |
-| [Check-Mongodb Plugins](https://github.com/m-erhardt/check-mongodb-plugins) | 1.0.0 |
-| [NCPA](https://github.com/NagiosEnterprises/ncpa) | 2.4.1 |
-| [NRPE](https://github.com/NagiosEnterprises/nrpe) | 4.1.0 |
-| [NSCA](https://github.com/NagiosEnterprises/nsca) | 2.10.2 |
-| [NAGIOSTV](https://github.com/chriscareycode/nagiostv-react) | 0.8.7 |
+| ---: | ---: |
+| [![Nagios Core](https://img.shields.io/github/v/tag/NagiosEnterprises/nagioscore?logo=github&label=Nagios%20Core)](https://github.com/NagiosEnterprises/nagioscore) | 4.5.0 |
+| [![Nagios Plugins](https://img.shields.io/github/v/tag/nagios-plugins/nagios-plugins?logo=github&label=Nagios%20Plugins)](https://github.com/nagios-plugins/nagios-plugins) | 2.4.6 |
+| [![NCPA](https://img.shields.io/github/v/tag/NagiosEnterprises/ncpa?logo=github&label=NCPA)](https://github.com/NagiosEnterprises/ncpa) | 3.0.0 |
+| [![NRPE](https://img.shields.io/github/v/tag/NagiosEnterprises/nrpe?logo=github&label=NRPE)](https://github.com/NagiosEnterprises/nrpe) | 4.1.0 |
+| [![NSCA](https://img.shields.io/github/v/tag/NagiosEnterprises/nsca?logo=github&label=NSCA)](https://github.com/NagiosEnterprises/nsca) | 2.10.2 |
+| [![MONGOSH](https://img.shields.io/github/v/tag/mongodb-js/mongosh?logo=github&label=MONGOSH)](https://github.com/mongodb-js/mongosh) | 2.1.0 |
+| [![Check-Mongodb Plugins](https://img.shields.io/github/v/tag/m-erhardt/check-mongodb-plugins?logo=github&label=Check-Mongodb%20Plugins)](https://github.com/m-erhardt/check-mongodb-plugins) | 1.0.0 |
+| [![NAGIOSTV](https://img.shields.io/github/v/tag/chriscareycode/nagiostv-react?logo=github&label=NAGIOSTV)](https://github.com/chriscareycode/nagiostv-react) | 0.8.7 |
+| [![s6-overlay](https://img.shields.io/github/v/tag/chriscareycode/nagiostv-react?logo=github&label=s6-overlay)](https://github.com/just-containers/s6-overlay) | 3.1.6.2 |
 
 ## Application Setup
 

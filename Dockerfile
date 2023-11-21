@@ -8,13 +8,13 @@ LABEL org.opencontainers.image.authors="Adam Rajczy" \
       org.opencontainers.image.url="https://github.com/arajczy/docker-nagios" \
       org.opencontainers.image.version="4.5.0"
 
-ARG S6_OVERLAY_VERSION="3.1.6.0"
-ARG MONGOSH_VERSION="2.0.2"
+ARG S6_OVERLAY_VERSION="3.1.6.2"
+ARG MONGOSH_VERSION="2.1.0"
 ARG CHECK_MONGODB_PLUGINS_VERSION="1.0.0"
 ARG NAGIOS_VERSION="4.5.0"
 ARG NAGIOS_PLUGINS_VERSION="2.4.6"
 ARG NAGIOS_THEMES_VERSION="0.2.0"
-ARG NCPA_VERSION="2.4.1"
+ARG NCPA_VERSION="3.0.0"
 ARG NRPE_VERSION="4.1.0"
 ARG NSCA_VERSION="2.10.2"
 ARG NAGIOSTV_VERSION="0.8.7"
@@ -28,13 +28,13 @@ ENV MAIL_ADDRESS="" \
     NAGIOS_STARTPAGE="default" \
     NAGIOS_THEME="default"
 
-ADD https://downloads.mongodb.com/compass/mongosh-${MONGOSH_VERSION}-linux-x64-openssl3.tgz /tmp
 ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz /tmp
 ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz.sha256 /tmp
 ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-x86_64.tar.xz /tmp
 ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-x86_64.tar.xz.sha256 /tmp
+ADD https://github.com/mongodb-js/mongosh/releases/download/v${MONGOSH_VERSION}/mongosh-${MONGOSH_VERSION}-linux-x64-openssl3.tgz /tmp
 ADD https://github.com/NagiosEnterprises/nagioscore/releases/download/nagios-${NAGIOS_VERSION}/nagios-${NAGIOS_VERSION}.tar.gz /tmp
-ADD https://nagios-plugins.org/download/nagios-plugins-${NAGIOS_PLUGINS_VERSION}.tar.gz /tmp
+ADD https://github.com/nagios-plugins/nagios-plugins/releases/download/release-${NAGIOS_PLUGINS_VERSION}/nagios-plugins-${NAGIOS_PLUGINS_VERSION}.tar.gz /tmp
 ADD https://github.com/NagiosEnterprises/nrpe/releases/download/nrpe-${NRPE_VERSION}/nrpe-${NRPE_VERSION}.tar.gz /tmp
 ADD https://github.com/NagiosEnterprises/nsca/releases/download/nsca-${NSCA_VERSION}/nsca-${NSCA_VERSION}.tar.gz /tmp
 ADD https://github.com/chriscareycode/nagiostv-react/releases/download/v${NAGIOSTV_VERSION}/nagiostv-${NAGIOSTV_VERSION}.tar.gz /tmp
@@ -55,9 +55,9 @@ RUN microdnf -y --refresh upgrade && \
     tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz && \
     tar -C / -Jxpf /tmp/s6-overlay-x86_64.tar.xz && \
     # install mongosh \
-    tar -C /tmp -zxf /tmp/mongosh-2.0.2-linux-x64-openssl3.tgz && \
-    mv /tmp/mongosh-2.0.2-linux-x64-openssl3/bin/mongosh /usr/bin && \
-    mv /tmp/mongosh-2.0.2-linux-x64-openssl3/bin/mongosh_crypt_v1.so /usr/lib && \
+    tar -C /tmp -zxf /tmp/mongosh-${MONGOSH_VERSION}-linux-x64-openssl3.tgz && \
+    mv /tmp/mongosh-${MONGOSH_VERSION}-linux-x64-openssl3/bin/mongosh /usr/bin && \
+    mv /tmp/mongosh-${MONGOSH_VERSION}-linux-x64-openssl3/bin/mongosh_crypt_v1.so /usr/lib && \
     # install nagios \
     tar -C /tmp -zxf /tmp/nagios-${NAGIOS_VERSION}.tar.gz && cd /tmp/nagios-${NAGIOS_VERSION} && \
     ./configure && \
