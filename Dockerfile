@@ -62,6 +62,8 @@ RUN microdnf -y --refresh upgrade && \
     tar -C /tmp -zxf /tmp/nagios-${NAGIOS_VERSION}.tar.gz && cd /tmp/nagios-${NAGIOS_VERSION} && \
     ./configure && \
     make all && make install && make install-commandmode && make install-config && make clean && \
+    # copy sample config to /usr/local/nagios/sampleconfig \
+    cp -R /usr/local/nagios/etc /usr/local/nagios/sampleconfig && \
     # install nagios-plugins \
     tar -C /tmp -zxf /tmp/nagios-plugins-${NAGIOS_PLUGINS_VERSION}.tar.gz && \
     cd /tmp/nagios-plugins-${NAGIOS_PLUGINS_VERSION} && \
