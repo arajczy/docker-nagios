@@ -172,20 +172,20 @@ WantedBy=default.target
 
 ## Parameters
 
-|       Parameter        | Function                                                      |
-| :--------------------: | ------------------------------------------------------------- |
-|       `-p 8080`        | WebUI                                                         |
-|   `-e MAIL_ADDRESS=`   | Specify your email address                                    |
-|    `-e MAIL_PASS=`     | Specify your email application password                       |
-| `-e MAIL_RELAY_HOST=`  | default: "[smtp.gmail.com]:587"                               |
-|   `-e NAGIOS_FQDN=`    | Specify your server FQDN                                      |
-| `-e NAGIOSADMIN_USER=` | default: nagiosadmin                                          |
-| `-e NAGIOSADMIN_PASS=` | default: nagios                                               |
-|   `-e NAGIOS_THEME=`   | "default", "dark"                                             |
-| `-e NAGIOS_STARTPAGE=` | "default", "services", "hosts", "overview", "summary", "grid" |
-|  `-v /path/to/config`  | Persistent volume for nagios config                           |
-|   `-v /path/to/log`    | Persistent volume for nagios logs                             |
-| `-v /path/to/themes`   | Persistent volume for themes                                  |
+|                                  Parameter | Function                                                      |
+| -----------------------------------------: | ------------------------------------------------------------- |
+|                           `-p 8080:80/tcp` | WebUI                                                         |
+|                         `-e MAIL_ADDRESS=` | Specify your email address                                    |
+|                            `-e MAIL_PASS=` | Specify your email application password                       |
+|                      `-e MAIL_RELAY_HOST=` | default: "[smtp.gmail.com]:587"                               |
+|                          `-e NAGIOS_FQDN=` | Specify your server FQDN                                      |
+|                     `-e NAGIOSADMIN_USER=` | default: nagiosadmin                                          |
+|                     `-e NAGIOSADMIN_PASS=` | default: nagios                                               |
+|                         `-e NAGIOS_THEME=` | "default", "dark"                                             |
+|                     `-e NAGIOS_STARTPAGE=` | "default", "services", "hosts", "overview", "summary", "grid" |
+| `-v /path/to/config:/usr/local/nagios/etc` | Persistent volume for nagios config                           |
+|          `-v /path/to/log:/opt/nagios/var` | Persistent volume for nagios logs                             |
+|    `-v /path/to/themes:/opt/nagios/themes` | Persistent volume for themes                                  |
 
 ## Support Info
 
