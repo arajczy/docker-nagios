@@ -11,17 +11,17 @@
 
 ## Components
 
-| Product / Latest | Installed |
-| ---: | ---: |
-| [![Nagios Core](https://img.shields.io/github/v/tag/NagiosEnterprises/nagioscore?logo=github&label=Nagios%20Core)](https://github.com/NagiosEnterprises/nagioscore) | 4.5.0 |
-| [![Nagios Plugins](https://img.shields.io/github/v/tag/nagios-plugins/nagios-plugins?logo=github&label=Nagios%20Plugins)](https://github.com/nagios-plugins/nagios-plugins) | 2.4.6 |
-| [![NCPA](https://img.shields.io/github/v/tag/NagiosEnterprises/ncpa?logo=github&label=NCPA)](https://github.com/NagiosEnterprises/ncpa) | 3.0.0 |
-| [![NRPE](https://img.shields.io/github/v/tag/NagiosEnterprises/nrpe?logo=github&label=NRPE)](https://github.com/NagiosEnterprises/nrpe) | 4.1.0 |
-| [![NSCA](https://img.shields.io/github/v/tag/NagiosEnterprises/nsca?logo=github&label=NSCA)](https://github.com/NagiosEnterprises/nsca) | 2.10.2 |
-| [![MongoSH](https://img.shields.io/github/v/tag/mongodb-js/mongosh?logo=github&label=MongoSH)](https://github.com/mongodb-js/mongosh) | 2.1.0 |
-| [![Check-MongoDB Plugins](https://img.shields.io/github/v/tag/m-erhardt/check-mongodb-plugins?logo=github&label=Check-MongoDB%20Plugins)](https://github.com/m-erhardt/check-mongodb-plugins) | 1.0.0 |
-| [![NagiosTV](https://img.shields.io/github/v/tag/chriscareycode/nagiostv-react?logo=github&label=NagiosTV)](https://github.com/chriscareycode/nagiostv-react) | 0.8.7 |
-| [![s6-overlay](https://img.shields.io/github/v/tag/just-containers/s6-overlay?logo=github&label=s6-overlay)](https://github.com/just-containers/s6-overlay) | 3.1.6.2 |
+|                                                                                                                                                                                  Product / Latest | Installed |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | --------: |
+|                           [![Nagios Core](https://img.shields.io/github/v/release/NagiosEnterprises/nagioscore?logo=github&label=Nagios%20Core)](https://github.com/NagiosEnterprises/nagioscore) |     4.5.0 |
+|                   [![Nagios Plugins](https://img.shields.io/github/v/release/nagios-plugins/nagios-plugins?logo=github&label=Nagios%20Plugins)](https://github.com/nagios-plugins/nagios-plugins) |     2.4.6 |
+|                                                       [![NCPA](https://img.shields.io/github/v/release/NagiosEnterprises/ncpa?logo=github&label=NCPA)](https://github.com/NagiosEnterprises/ncpa) |     3.0.0 |
+|                                                       [![NRPE](https://img.shields.io/github/v/release/NagiosEnterprises/nrpe?logo=github&label=NRPE)](https://github.com/NagiosEnterprises/nrpe) |     4.1.0 |
+|                                                       [![NSCA](https://img.shields.io/github/v/release/NagiosEnterprises/nsca?logo=github&label=NSCA)](https://github.com/NagiosEnterprises/nsca) |    2.10.2 |
+|                                                         [![MongoSH](https://img.shields.io/github/v/release/mongodb-js/mongosh?logo=github&label=MongoSH)](https://github.com/mongodb-js/mongosh) |     2.1.0 |
+| [![Check-MongoDB Plugins](https://img.shields.io/github/v/release/m-erhardt/check-mongodb-plugins?logo=github&label=Check-MongoDB%20Plugins)](https://github.com/m-erhardt/check-mongodb-plugins) |     1.0.0 |
+|                                 [![NagiosTV](https://img.shields.io/github/v/release/chriscareycode/nagiostv-react?logo=github&label=NagiosTV)](https://github.com/chriscareycode/nagiostv-react) |     0.8.7 |
+|                                   [![s6-overlay](https://img.shields.io/github/v/release/just-containers/s6-overlay?logo=github&label=s6-overlay)](https://github.com/just-containers/s6-overlay) |   3.1.6.2 |
 
 ## Application Setup
 
@@ -113,7 +113,7 @@ podman run \
         - nagios-etc:/opt/nagios/etc
         - nagios-themes:/opt/nagios/themes
         - nagios-var:/opt/nagios/var
-    
+
     volumes:
         nagios-etc:
         nagios:themes:
@@ -123,6 +123,18 @@ podman run \
 ### systemd container service
 
 On Linux hosts with podman installed you can run this container as a systemd service, too.
+
+#### steps to enable nagios container as a systemd service
+
+1.  copy below content and paste it to `$HOME/.config/containers/systemd/nagios.container`
+2.  perform a systemd daemon-reload with `systemctl --user daemon-reload`
+3.  start service with `systemctl --user start nagios.service`.
+
+#### steps to disable nagios container service
+
+1.  enter commands: `systemctl --user stop nagios.service`
+2.  remove container file: `$HOME/.config/containers/systemd/nagios.container`
+3.  perform a systemd daemon-reload with `systemctl --user daemon-reload`
 
 ```ini
 [Unit]
@@ -158,32 +170,22 @@ TimeoutStopSec=70
 WantedBy=default.target
 ```
 
-#### steps to enable nagios container as a systemd service
-1.  copy below content and paste it to `$HOME/.config/containers/systemd/nagios.container`
-2.  perform a systemd daemon-reload with `systemctl --user daemon-reload`
-3.  start service with `systemctl --user start nagios.service`.
-
-#### steps to disable nagios container service
-1.  enter commands: `systemctl --user stop nagios.service`
-2.  remove container file: `$HOME/.config/containers/systemd/nagios.container`
-3.  perform a systemd daemon-reload with `systemctl --user daemon-reload`
-
 ## Parameters
 
-| Parameter | Function |
-| :----: | --- |
-| `-p 8080` | WebUI |
-| `-e MAIL_ADDRESS=` | Specify your email address |
-| `-e MAIL_PASS=` | Specify your email application password |
-| `-e MAIL_RELAY_HOST=` | default: "[smtp.gmail.com]:587" |
-| `-e NAGIOS_FQDN=` | Specify your server FQDN |
-| `-e NAGIOSADMIN_USER=` | default: nagiosadmin |
-| `-e NAGIOSADMIN_PASS=` | default: nagios |
-| `-e NAGIOS_THEME=` | "default", "dark" |
+|       Parameter        | Function                                                      |
+| :--------------------: | ------------------------------------------------------------- |
+|       `-p 8080`        | WebUI                                                         |
+|   `-e MAIL_ADDRESS=`   | Specify your email address                                    |
+|    `-e MAIL_PASS=`     | Specify your email application password                       |
+| `-e MAIL_RELAY_HOST=`  | default: "[smtp.gmail.com]:587"                               |
+|   `-e NAGIOS_FQDN=`    | Specify your server FQDN                                      |
+| `-e NAGIOSADMIN_USER=` | default: nagiosadmin                                          |
+| `-e NAGIOSADMIN_PASS=` | default: nagios                                               |
+|   `-e NAGIOS_THEME=`   | "default", "dark"                                             |
 | `-e NAGIOS_STARTPAGE=` | "default", "services", "hosts", "overview", "summary", "grid" |
-| `-v /path/to/config` | Persistent volume for nagios config |
-| `-v /path/to/log` | Persistent volume for nagios logs |
-| `-v /path/to/themes` | Persistent volume for themes |
+|  `-v /path/to/config`  | Persistent volume for nagios config                           |
+|   `-v /path/to/log`    | Persistent volume for nagios logs                             |
+| `-v /path/to/themes`   | Persistent volume for themes                                  |
 
 ## Support Info
 
