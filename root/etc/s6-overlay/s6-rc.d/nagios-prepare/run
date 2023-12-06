@@ -3,19 +3,26 @@
 . /etc/s6-overlay/lib/logger
 
 info "Configure nagios"
+
+# copy default config as sample config
+find /usr/local/nagios/defaults/ -name *.cfg -type f -exec bash -c 'for f; do cp $f /usr/local/nagios/etc/${f#*defaults/}.sample; [[ ! -f /usr/local/nagios/etc/${f#*defaults/} ]] && cp $f /usr/local/nagios/etc/${f#*defaults/}; done' _ {} +
+
+# handling ownership & permissions
 chown -R nagios: /usr/local/nagios
 chmod 0755 /usr/local/nagios
+find /usr/local/nagios/etc/ -name '*cfg*' -type f -exec bash -c 'for f; do if [[ $f =~ nsca ]]; then chmod 600 $f; elif [[ $f =~ resource ]]; then chmod 640  $f; else chmod 644 $f; fi; done' _ {} +
 
 if [ ! -f /usr/local/nagios/etc/htpasswd.users ]; then
   info "$(htpasswd -c -b -B /usr/local/nagios/etc/htpasswd.users ${NAGIOSADMIN_USER} ${NAGIOSADMIN_PASS} 2>&1)"
-  chown -R nagios:nagios /usr/local/nagios/etc/htpasswd.users
+  chown nagios:nagios /usr/local/nagios/etc/htpasswd.users
+  chmod 600 /usr/local/nagios/etc/htpasswd.users
 
   info "Configure nagios for admin user ${NAGIOSADMIN_USER}"
   sed -i -E "s/^(authorized_for_.*)=.*$/\1=${NAGIOSADMIN_USER}/" /usr/local/nagios/etc/cgi.cfg
 fi
 
-
 if [ -n ${NAGIOS_STARTPAGE} ]; then
+  info "Set nagios starting page to ${BOLD}${NAGIOS_STARTPAGE}${RESET}"
   case ${NAGIOS_STARTPAGE} in
     services)
       START_PAGE='/nagios/cgi-bin/status.cgi?host=all'
@@ -36,11 +43,15 @@ if [ -n ${NAGIOS_STARTPAGE} ]; then
       START_PAGE='main.php'
     ;;
   esac
-  info "Set nagios starting page to ${BOLD}${NAGIOS_STARTPAGE}${RESET}"
   sed -i "s,main.php,${START_PAGE}," /usr/local/nagios/share/index.php
 fi
 
 if [ -n ${NAGIOS_THEME} ] && [ ${NAGIOS_THEME} != "default" ]; then
   info "Set nagios theme to ${BOLD}${NAGIOS_THEME}${RESET}"
   cp -r /usr/local/nagios/themes/${NAGIOS_THEME}/stylesheets /usr/local/nagios/share/
+fi
+
+if ${MONGOSH_DISABLE_TELEMETRY}; then
+  info "Disable telemetry for mongo shell"
+  su - nagios -c 'mongosh --nodb --eval "disableTelemetry()"'
 fi

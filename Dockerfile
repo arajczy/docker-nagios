@@ -22,6 +22,7 @@ ARG NAGIOSTV_VERSION="0.8.7"
 ENV MAIL_ADDRESS="" \
     MAIL_PASS="" \
     MAIL_RELAY_HOST="[smtp.gmail.com]:587" \
+    MONGOSH_DISABLE_TELEMETRY=false \
     NAGIOS_FQDN="nagios.example.com" \
     NAGIOSADMIN_USER="nagiosadmin" \
     NAGIOSADMIN_PASS="nagios" \
@@ -62,8 +63,6 @@ RUN microdnf -y --refresh upgrade && \
     tar -C /tmp -zxf /tmp/nagios-${NAGIOS_VERSION}.tar.gz && cd /tmp/nagios-${NAGIOS_VERSION} && \
     ./configure && \
     make all && make install && make install-commandmode && make install-config && make clean && \
-    # copy sample config to /usr/local/nagios/sampleconfig \
-    cp -R /usr/local/nagios/etc /usr/local/nagios/sampleconfig && \
     # install nagios-plugins \
     tar -C /tmp -zxf /tmp/nagios-plugins-${NAGIOS_PLUGINS_VERSION}.tar.gz && \
     cd /tmp/nagios-plugins-${NAGIOS_PLUGINS_VERSION} && \
@@ -89,6 +88,8 @@ RUN microdnf -y --refresh upgrade && \
     make all && \
     cp src/nsca /usr/local/nagios/bin/ && cp src/send_nsca /usr/local/nagios/bin/ && \
     cp sample-config/nsca.cfg /usr/local/nagios/etc/ && cp sample-config/send_nsca.cfg /usr/local/nagios/etc/ && \
+    # copy default config to /usr/local/nagios/defaults \
+    cp -R /usr/local/nagios/etc /usr/local/nagios/defaults && \
     # install NAGIOSTV \
     tar -C /usr/local/nagios/share -zxf /tmp/nagiostv-$NAGIOSTV_VERSION.tar.gz && \
     tar -C /usr/local/nagios/ -zxpf /tmp/nagios-themes-v${NAGIOS_THEMES_VERSION}.tar.gz \
