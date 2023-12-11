@@ -35,7 +35,7 @@ ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLA
 ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-x86_64.tar.xz.sha256 /tmp
 ADD https://github.com/mongodb-js/mongosh/releases/download/v${MONGOSH_VERSION}/mongosh-${MONGOSH_VERSION}-linux-x64-openssl3.tgz /tmp
 ADD https://github.com/NagiosEnterprises/nagioscore/releases/download/nagios-${NAGIOS_VERSION}/nagios-${NAGIOS_VERSION}.tar.gz /tmp
-ADD https://github.com/nagios-plugins/nagios-plugins/releases/download/release-${NAGIOS_PLUGINS_VERSION}/nagios-plugins-${NAGIOS_PLUGINS_VERSION}.tar.gz /tmp
+ADD https://github.com/nagios-plugins/nagios-plugins/releases/download/${NAGIOS_PLUGINS_VERSION}/nagios-plugins-${NAGIOS_PLUGINS_VERSION}.tar.gz /tmp
 ADD https://github.com/NagiosEnterprises/nrpe/releases/download/nrpe-${NRPE_VERSION}/nrpe-${NRPE_VERSION}.tar.gz /tmp
 ADD https://github.com/NagiosEnterprises/nsca/releases/download/nsca-${NSCA_VERSION}/nsca-${NSCA_VERSION}.tar.gz /tmp
 ADD https://github.com/chriscareycode/nagiostv-react/releases/download/v${NAGIOSTV_VERSION}/nagiostv-${NAGIOSTV_VERSION}.tar.gz /tmp
