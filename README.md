@@ -45,7 +45,7 @@ docker run \
     -d \
     --name=nagios \
     --hostname= `#optional` \
-    --cap-add=NET_RAW
+    --cap-add=NET_RAW \
     --env MAIL_ADDRESS= `#optional` \
     --env MAIL_PASS= `#optional` \
     --env MAIL_RELAY_HOST= `#optional` \
@@ -54,7 +54,7 @@ docker run \
     --env NAGIOSADMIN_PASS= `#optional` \
     --env NAGIOS_THEME= `#optional` \
     --env NAGIOS_STARTPAGE= `#optional` \
-    --env TZ=Etc/UTC
+    --env TZ=Etc/UTC \
     --publish=8080:80 \
     --volume /path/to/config:/usr/local/nagios/etc \
     --volume /path/to/log:/usr/local/nagios/var \
@@ -70,7 +70,7 @@ podman run \
     --replace \
     --name=nagios \
     --hostname= `#optional` \
-    --cap-add=NET_RAW
+    --cap-add=NET_RAW \
     --env MAIL_ADDRESS= `#optional` \
     --env MAIL_RELAY_HOST= `#optional` \
     --env NAGIOS_FQDN= `#optional` \
