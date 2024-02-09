@@ -25,19 +25,19 @@ if [ -n ${NAGIOS_STARTPAGE} ]; then
   info "Set nagios starting page to ${BOLD}${NAGIOS_STARTPAGE}${RESET}"
   case ${NAGIOS_STARTPAGE} in
     services)
-      START_PAGE='/nagios/cgi-bin/status.cgi?host=all'
+      START_PAGE='cgi-bin/status.cgi?host=all'
     ;;
     hosts)
-      START_PAGE='/nagios/cgi-bin/status.cgi?hostgroup=all\&style=hostdetail'
+      START_PAGE='cgi-bin/status.cgi?hostgroup=all\&style=hostdetail'
     ;;
     overview)
-      START_PAGE='/nagios/cgi-bin/status.cgi?hostgroup=all\&style=overview'
+      START_PAGE='cgi-bin/status.cgi?hostgroup=all\&style=overview'
     ;;
     summary)
-      START_PAGE='/nagios/cgi-bin/status.cgi?hostgroup=all\&style=summary'
+      START_PAGE='cgi-bin/status.cgi?hostgroup=all\&style=summary'
     ;;
     grid)
-      START_PAGE='/nagios/cgi-bin/status.cgi?hostgroup=all\&style=grid'
+      START_PAGE='cgi-bin/status.cgi?hostgroup=all\&style=grid'
     ;;
     default|*)
       START_PAGE='main.php'
