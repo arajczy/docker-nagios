@@ -9,7 +9,7 @@ LABEL org.opencontainers.image.authors="Adam Rajczy" \
       org.opencontainers.image.version="4.5.0"
 
 ARG S6_OVERLAY_VERSION="3.1.6.2"
-ARG MONGOSH_VERSION="2.1.3"
+ARG MONGOSH_VERSION="2.1.4"
 ARG CHECK_MONGODB_PLUGINS_VERSION="1.0.0"
 ARG NAGIOS_VERSION="4.5.0"
 ARG NAGIOS_PLUGINS_VERSION="2.4.8"
