@@ -21,8 +21,6 @@ jobs:
 
       - name: Install cosign
         uses: sigstore/cosign-installer@v3
-        with:
-          cosign-release: main
 
       - name: Extract metadata
         id: meta
@@ -64,8 +62,6 @@ jobs:
 
       - name: Sign the published image
         env:
-          COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
-          COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
           DIGEST: ${{ steps.build-and-push.outputs.digest }}
           TAGS: ${{ steps.meta.outputs.tags }}
         run: |
@@ -73,7 +69,7 @@ jobs:
           for tag in ${TAGS}; do
             images+=" ${tag}@${DIGEST}"
           done
-          cosign sign --yes --key env://COSIGN_PRIVATE_KEY ${images}
+          cosign sign --yes ${images}
 
       - name: Update repo description
         uses: peter-evans/dockerhub-description@v4
