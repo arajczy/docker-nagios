@@ -1,4 +1,4 @@
-FROM quay.io/fedora/fedora-minimal:39
+FROM quay.io/fedora/fedora-minimal:40
 
 LABEL org.opencontainers.image.authors="Adam Rajczy" \
       org.opencontainers.image.description="Nagios Core" \

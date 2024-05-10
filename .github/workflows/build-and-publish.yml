@@ -6,7 +6,8 @@ on:
       - v*.*.*
 
 env:
-  REGISTRY_IMAGE: arajczy/nagios
+  REGISTRY: ghcr.io
+  IMAGE_NAME: arajczy/nagios
 
 jobs:
   build:
@@ -27,8 +28,8 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            ${{ env.REGISTRY_IMAGE }}
-            ghcr.io/${{ env.REGISTRY_IMAGE }}
+            ${{ env.IMAGE_NAME }}
+            ghcr.io/${{ env.IMAGE_NAME }}
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}
@@ -55,9 +56,9 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          no-cache: true
-          pull: true
-          push: true
+          no-cache: True
+          pull: True
+          push: True
           platforms: linux/amd64
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -78,4 +79,4 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          repository: ${{ env.REGISTRY_IMAGE }}
+          repository: ${{ env.IMAGE_NAME }}
