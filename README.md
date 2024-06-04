@@ -94,7 +94,7 @@ podman run \
     version: '3'
     services:
       nagios:
-        image: arajczy/nagios:jammy
+        image: arajczy/nagios:latest
         hostname: nagios.example.com
         cap_add:
           - NET_RAW
@@ -152,7 +152,7 @@ Environment=NAGIOSADMIN_USER= #optional
 Environment=NAGIOS_THEME= #optional
 Environment=NAGIOS_STARTPAGE= #optional
 HostName= #optional
-Image=ghcr.io/arajczy/nagios:fedora
+Image=ghcr.io/arajczy/nagios:latest
 Notify=common
 PublishPort=8080:80/tcp
 Secret=mail-pass,type=env,target=MAIL_PASS
