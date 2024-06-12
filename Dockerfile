@@ -6,18 +6,18 @@ LABEL org.opencontainers.image.authors="Adam Rajczy" \
       org.opencontainers.image.source="https://github.com/arajczy/docker-nagios" \
       org.opencontainers.image.title="nagios" \
       org.opencontainers.image.url="https://github.com/arajczy/docker-nagios" \
-      org.opencontainers.image.version="4.5.0"
+      org.opencontainers.image.version="4.5.3"
 
-ARG S6_OVERLAY_VERSION="3.2.0.0"
-ARG MONGOSH_VERSION="2.2.6"
-ARG CHECK_MONGODB_PLUGINS_VERSION="1.0.0"
 ARG NAGIOS_VERSION="4.5.3"
 ARG NAGIOS_PLUGINS_VERSION="2.4.10"
 ARG NAGIOS_THEMES_VERSION="0.2.0"
 ARG NCPA_VERSION="3.1.0"
 ARG NRPE_VERSION="4.1.0"
 ARG NSCA_VERSION="2.10.2"
+ARG MONGOSH_VERSION="2.2.6"
+ARG CHECK_MONGODB_PLUGINS_VERSION="1.0.0"
 ARG NAGIOSTV_VERSION="0.9.2"
+ARG S6_OVERLAY_VERSION="3.2.0.0"
 
 ENV MAIL_ADDRESS="" \
     MAIL_PASS="" \
