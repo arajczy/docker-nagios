@@ -1,13 +1,5 @@
 FROM quay.io/fedora/fedora-minimal:40
 
-LABEL org.opencontainers.image.authors="Adam Rajczy" \
-      org.opencontainers.image.description="Nagios Core" \
-      org.opencontainers.image.licenses="MIT" \
-      org.opencontainers.image.source="https://github.com/arajczy/docker-nagios" \
-      org.opencontainers.image.title="nagios" \
-      org.opencontainers.image.url="https://github.com/arajczy/docker-nagios" \
-      org.opencontainers.image.version="4.5.3"
-
 ARG NAGIOS_VERSION="4.5.3"
 ARG NAGIOS_PLUGINS_VERSION="2.4.10"
 ARG NAGIOS_THEMES_VERSION="0.2.0"
