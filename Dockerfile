@@ -6,7 +6,7 @@ ARG NAGIOS_THEMES_VERSION="0.2.0"
 ARG NCPA_VERSION="3.1.0"
 ARG NRPE_VERSION="4.1.0"
 ARG NSCA_VERSION="2.10.2"
-ARG MONGOSH_VERSION="2.2.12"
+ARG MONGOSH_VERSION="2.2.15"
 ARG CHECK_MONGODB_PLUGINS_VERSION="1.0.0"
 ARG NAGIOSTV_VERSION="0.9.2"
 ARG S6_OVERLAY_VERSION="3.2.0.0"
@@ -35,7 +35,7 @@ ADD https://github.com/arajczy/nagios-themes/archive/refs/tags/nagios-themes-v${
 
 RUN microdnf -y --refresh upgrade && \
     microdnf -y --setopt install_weak_deps=False install \
-      automake cyrus-sasl-plain fcgiwrap fping gcc gcc-c++ gzip httpd-tools iputils kernel-devel libdbi-devel libpq-devel mailx make mariadb-devel net-snmp net-snmp-utils nginx openssl perl-FindBin perl-lib perl-Net-SNMP php php-fpm postfix python python-nagiosplugin python-toml shadow-utils samba-client tar unzip xz && \
+      automake cyrus-sasl-plain fcgiwrap fping gcc gcc-c++ gzip httpd-tools iputils kernel-devel libdbi-devel libpq-devel mailx make mariadb-devel net-snmp net-snmp-utils nginx openssl perl-bignum perl-FindBin perl-lib perl-Net-SNMP php php-fpm postfix python python-nagiosplugin python-toml shadow-utils samba-client tar unzip xz && \
     # adjust ping permissions \
     chmod 4755 /usr/bin/ping && \
     # Add nagios user \
@@ -98,6 +98,8 @@ ADD --chmod=0755 https://raw.githubusercontent.com/NagiosEnterprises/ncpa/v${NCP
 # Install check-mongodb-plugins
 ADD --chmod=0755 https://raw.githubusercontent.com/m-erhardt/check-mongodb-plugins/v${CHECK_MONGODB_PLUGINS_VERSION}/check_mongodb_stats.py /usr/local/nagios/libexec/
 ADD --chmod=0755 https://raw.githubusercontent.com/m-erhardt/check-mongodb-plugins/v${CHECK_MONGODB_PLUGINS_VERSION}/check_mongodb_dbsize.py /usr/local/nagios/libexec/
+# Install check_snmp_int plugin
+ADD --chmod=0755 https://raw.githubusercontent.com/SteScho/manubulon-snmp/master/plugins/check_snmp_int.pl /usr/local/nagios/libexec/
 
 COPY root /
 
