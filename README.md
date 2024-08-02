@@ -228,5 +228,3 @@ WantedBy=default.target
     ```sh
     docker logs -f nagios
     ```
-
-...
