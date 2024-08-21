@@ -14,7 +14,7 @@
 |                                                                                                                                                                                  Product / Latest | Installed |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | --------: |
 |                           [![Nagios Core](https://img.shields.io/github/v/release/NagiosEnterprises/nagioscore?logo=github&label=Nagios%20Core)](https://github.com/NagiosEnterprises/nagioscore) |     4.5.4 |
-|                   [![Nagios Plugins](https://img.shields.io/github/v/release/nagios-plugins/nagios-plugins?logo=github&label=Nagios%20Plugins)](https://github.com/nagios-plugins/nagios-plugins) |    2.4.11 |
+|                   [![Nagios Plugins](https://img.shields.io/github/v/release/nagios-plugins/nagios-plugins?logo=github&label=Nagios%20Plugins)](https://github.com/nagios-plugins/nagios-plugins) |    2.4.12 |
 |                                                       [![NCPA](https://img.shields.io/github/v/release/NagiosEnterprises/ncpa?logo=github&label=NCPA)](https://github.com/NagiosEnterprises/ncpa) |     3.1.0 |
 |                                                       [![NRPE](https://img.shields.io/github/v/release/NagiosEnterprises/nrpe?logo=github&label=NRPE)](https://github.com/NagiosEnterprises/nrpe) |     4.1.1 |
 |                                                       [![NSCA](https://img.shields.io/github/v/release/NagiosEnterprises/nsca?logo=github&label=NSCA)](https://github.com/NagiosEnterprises/nsca) |    2.10.3 |
