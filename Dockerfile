@@ -33,8 +33,8 @@ ADD https://github.com/NagiosEnterprises/nsca/releases/download/nsca-${NSCA_VERS
 ADD https://github.com/chriscareycode/nagiostv-react/releases/download/v${NAGIOSTV_VERSION}/nagiostv-${NAGIOSTV_VERSION}.tar.gz /tmp
 ADD https://github.com/arajczy/nagios-themes/archive/refs/tags/nagios-themes-v${NAGIOS_THEMES_VERSION}.tar.gz /tmp
 
-RUN dnf -y --refresh upgrade && \
-    dnf -y --setopt install_weak_deps=False install \
+RUN microdnf -y --refresh upgrade && \
+    microdnf -y --setopt install_weak_deps=False install \
       automake cyrus-sasl-plain fcgiwrap fping gcc gcc-c++ gd gd-devel gzip httpd-tools iputils kernel-devel libdbi-devel libpq-devel lm_sensors mailx make mariadb-devel net-snmp net-snmp-utils nginx openssl perl-bignum perl-FindBin perl-lib perl-Net-SNMP php php-fpm postfix python python-nagiosplugin python-toml shadow-utils samba-client tar unzip xz && \
     # adjust ping permissions \
     chmod 4755 /usr/bin/ping && \
@@ -88,8 +88,8 @@ RUN dnf -y --refresh upgrade && \
       --strip-components=1 \
       --exclude=README.md && \
     # cleanup \
-    dnf -y remove automake gcc gcc-c++ gd-devel kernel-devel make shadow-utils tar unzip xz && \
-    dnf -y autoremove && dnf -y clean all && rm -rf /tmp/*
+    microdnf -y remove automake gcc gcc-c++ gd-devel kernel-devel make shadow-utils tar unzip xz && \
+    microdnf -y autoremove && microdnf -y clean all && rm -rf /tmp/*
 
 # Root cert required for SMTP Relay
 ADD --chmod=0644 https://www.thawte.com/roots/thawte_Premium_Server_CA.pem /etc/postfix/cacert.pem
