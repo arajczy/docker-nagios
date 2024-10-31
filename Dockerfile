@@ -1,4 +1,4 @@
-FROM quay.io/fedora/fedora-minimal:41
+FROM quay.io/fedora/fedora-minimal:40
 
 ARG NAGIOS_VERSION="4.5.7"
 ARG NAGIOS_PLUGINS_VERSION="2.4.12"
