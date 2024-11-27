@@ -18,15 +18,15 @@
 |                                                       [![NCPA](https://img.shields.io/github/v/release/NagiosEnterprises/ncpa?logo=github&label=NCPA)](https://github.com/NagiosEnterprises/ncpa) |     3.1.1 |
 |                                                       [![NRPE](https://img.shields.io/github/v/release/NagiosEnterprises/nrpe?logo=github&label=NRPE)](https://github.com/NagiosEnterprises/nrpe) |     4.1.1 |
 |                                                       [![NSCA](https://img.shields.io/github/v/release/NagiosEnterprises/nsca?logo=github&label=NSCA)](https://github.com/NagiosEnterprises/nsca) |    2.10.3 |
-|                                                         [![MongoSH](https://img.shields.io/github/v/release/mongodb-js/mongosh?logo=github&label=MongoSH)](https://github.com/mongodb-js/mongosh) |    2.3.3 |
+|                                                         [![MongoSH](https://img.shields.io/github/v/release/mongodb-js/mongosh?logo=github&label=MongoSH)](https://github.com/mongodb-js/mongosh) |     2.3.4 |
 | [![Check-MongoDB Plugins](https://img.shields.io/github/v/release/m-erhardt/check-mongodb-plugins?logo=github&label=Check-MongoDB%20Plugins)](https://github.com/m-erhardt/check-mongodb-plugins) |     1.0.0 |
 |                                 [![NagiosTV](https://img.shields.io/github/v/release/chriscareycode/nagiostv-react?logo=github&label=NagiosTV)](https://github.com/chriscareycode/nagiostv-react) |     0.9.2 |
 |                                   [![s6-overlay](https://img.shields.io/github/v/release/just-containers/s6-overlay?logo=github&label=s6-overlay)](https://github.com/just-containers/s6-overlay) |   3.2.0.2 |
 
 ## Application Setup
 
--   Access the webui at `http://<your-ip>:8080`, for more information check out [Nagios Core](https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/4/en/toc.html).
--   Access [NagiosTV](https://nagiostv.com/) webui at `http://<your-ip>:8080/nagiostv`.
+- Access the webui at `http://<your-ip>:8080`, for more information check out [Nagios Core](https://assets.nagios.com/downloads/nagioscore/docs/nagioscore/4/en/toc.html).
+- Access [NagiosTV](https://nagiostv.com/) webui at `http://<your-ip>:8080/nagiostv`.
 
 [<img src="https://www.nagios.org/wp-content/uploads/2023/01/Nagios-Blue-N.svg" alt="Nagios" width="250" />](https://www.nagios.org/)
 
@@ -217,14 +217,14 @@ WantedBy=default.target
 
 ## Support Info
 
--   Shell access inside running container:
+- Shell access inside running container:
 
-    ```sh
-    docker exec -it nagios bash
-    ```
+  ```sh
+  docker exec -it nagios bash
+  ```
 
--   monitor the logs of running container:
+- monitor the logs of running container:
 
-    ```sh
-    docker logs -f nagios
-    ```
+  ```sh
+  docker logs -f nagios
+  ```
