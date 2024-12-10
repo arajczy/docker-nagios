@@ -16,7 +16,7 @@
 |                           [![Nagios Core](https://img.shields.io/github/v/release/NagiosEnterprises/nagioscore?logo=github&label=Nagios%20Core)](https://github.com/NagiosEnterprises/nagioscore) |     4.5.8 |
 |                   [![Nagios Plugins](https://img.shields.io/github/v/release/nagios-plugins/nagios-plugins?logo=github&label=Nagios%20Plugins)](https://github.com/nagios-plugins/nagios-plugins) |    2.4.12 |
 |                                                       [![NCPA](https://img.shields.io/github/v/release/NagiosEnterprises/ncpa?logo=github&label=NCPA)](https://github.com/NagiosEnterprises/ncpa) |     3.1.1 |
-|                                                       [![NRPE](https://img.shields.io/github/v/release/NagiosEnterprises/nrpe?logo=github&label=NRPE)](https://github.com/NagiosEnterprises/nrpe) |     4.1.1 |
+|                                                       [![NRPE](https://img.shields.io/github/v/release/NagiosEnterprises/nrpe?logo=github&label=NRPE)](https://github.com/NagiosEnterprises/nrpe) |     4.1.2 |
 |                                                       [![NSCA](https://img.shields.io/github/v/release/NagiosEnterprises/nsca?logo=github&label=NSCA)](https://github.com/NagiosEnterprises/nsca) |    2.10.3 |
 |                                                         [![MongoSH](https://img.shields.io/github/v/release/mongodb-js/mongosh?logo=github&label=MongoSH)](https://github.com/mongodb-js/mongosh) |     2.3.4 |
 | [![Check-MongoDB Plugins](https://img.shields.io/github/v/release/m-erhardt/check-mongodb-plugins?logo=github&label=Check-MongoDB%20Plugins)](https://github.com/m-erhardt/check-mongodb-plugins) |     1.0.0 |
