@@ -58,9 +58,7 @@ RUN dnf -y --refresh upgrade && \
     # install nagios-plugins \
     tar -C /tmp -zxf /tmp/nagios-plugins-${NAGIOS_PLUGINS_VERSION}.tar.gz && \
     cd /tmp/nagios-plugins-${NAGIOS_PLUGINS_VERSION} && \
-    ./configure \
-      --with-nagios-user=nagios \
-      --with-nagios-group=nagios && \
+    ./configure --enable-command-args && \
     # patch nagios-plugins \
     sed -i s/PS_COMMAND/PING_COMMAND/ plugins/check_load.c && \
     make && make install && make clean && \
