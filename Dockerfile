@@ -58,16 +58,16 @@ RUN dnf -y --refresh upgrade && \
     # install nagios-plugins \
     tar -C /tmp -zxf /tmp/nagios-plugins-${NAGIOS_PLUGINS_VERSION}.tar.gz && \
     cd /tmp/nagios-plugins-${NAGIOS_PLUGINS_VERSION} && \
-    ./configure --enable-command-args && \
+    ./configure \
+      --with-nagios-user=nagios \
+      --with-nagios-group=nagios && \
     # patch nagios-plugins \
     sed -i s/PS_COMMAND/PING_COMMAND/ plugins/check_load.c && \
     make && make install && make clean && \
     # install NRPE \
     tar -C /tmp -zxf /tmp/nrpe-${NRPE_VERSION}.tar.gz && \
     cd /tmp/nrpe-${NRPE_VERSION} && \
-    ./configure \
-      --with-ssl=/usr/bin/openssl \
-      --with-ssl-lib=/usr/lib/x86_64-linux-gnu && \
+    ./configure --enable-command-args && \
     make check_nrpe && cp src/check_nrpe /usr/local/nagios/libexec/ && make clean && \
     # install NSCA \
     tar -C /tmp -zxf /tmp/nsca-${NSCA_VERSION}.tar.gz && \
