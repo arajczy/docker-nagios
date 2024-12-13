@@ -51,7 +51,7 @@ if [ -n ${NAGIOS_THEME} ] && [ ${NAGIOS_THEME} != "default" ]; then
   cp -r /usr/local/nagios/themes/${NAGIOS_THEME}/stylesheets /usr/local/nagios/share/
 fi
 
-if ${MONGOSH_DISABLE_TELEMETRY}; then
+if [[ $MONGOSH_DISABLE_TELEMETRY =~ ^(True|true|1)$ ]]; then
   info "Disable telemetry for mongo shell"
   su - nagios -c 'mongosh --nodb --eval "disableTelemetry()"'
 fi
