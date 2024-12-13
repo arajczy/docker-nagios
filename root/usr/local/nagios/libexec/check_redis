@@ -1,38 +1,67 @@
 #!/usr/bin/env bash
-#
-# Simple script to check if Redis is UP
-#
-# Usage: check_redis [-H host] [-p port] [-a passcode] [-w warning] [-c critical]
-#   -H, --host                  Redis host
-#   -p, --port                  Redis port, eg: 6379
-#   -a, --auth                  Redis passcode
-#   -w, --warning WARNING       Warning value (percent)
-#   -c, --critical CRITICAL     Critical value (percent)
-#   -h, --help                  Display this screen
-#
+
+# Exit codes
+STATE_OK=0
+STATE_WARNING=1
+STATE_CRITICAL=2
+STATE_UNKNOWN=3
+
+print_usage () {
+  echo
+  echo "$(basename $0) - Simple script to check if Redis is UP"
+  echo
+  echo "  Usage: check_redis [-H host] [-p port] [-a authcode] [-w warning] [-c critical]"
+  echo "    -H, --host                  Redis host, default: 127.0.0.1"
+  echo "    -p, --port                  Redis port, default: 6379"
+  echo "    -a, --auth                  Redis authcode"
+  echo "    -w, --warning               Warning value (MiB)"
+  echo "    -c, --critical              Critical value (MiB)"
+  echo "    -h, --help                  Display this screen"
+  echo 
+}
+
+require_arg () {
+  if [[ -z $2 ]] || [[ $2 = '--'* ]]; then
+    echo "Option '$1' requires an argument."
+    exit $STATE_UNKNOWN
+  fi
+}
 
 while [[ -n "$1" ]]; do
   case $1 in
   --host | -H)
+    require_arg $1 $2
     host=$2
     shift
     ;;
   --port | -p)
+    require_arg $1 $2
     port=$2
     shift
     ;;
   --auth | -a)
+    require_arg $1 $2
     auth=$2
     shift
     ;;
+  --critical | -c)
+    require_arg $1 $2
+    critical=$2
+    shift
+    ;;
+  --warning | -w)
+    require_arg $1 $2
+    warning=$2
+    shift
+    ;;
   --help | -h)
-    sed -n '2,11p' "$0" | tr -d '#'
-    exit 0
+    print_usage
+    exit $STATE_UNKNOWN
     ;;
   *)
-    echo "Unknown argument: $1"
-    exec "$0" --help
-    exit 2
+    echo "Invalid option: $1"
+    print_usage
+    exit $STATE_UNKNOWN
     ;;
   esac
   shift
@@ -41,21 +70,45 @@ done
 host=${host:=127.0.0.1}
 port=${port:=6379}
 auth=${auth:=}
-info=$([[ -z $auth ]] && echo info || echo -e "AUTH $auth\ninfo")
+critical=${critical:=}
+warning=${warning:=}
 
-output=$(echo "$info" | nc -w1 $host $port)
-if [[ $? -ne 0 ]] || [[ -z $output ]]; then
+query_stats=$([[ -z $auth ]] && echo info || echo -e "AUTH $auth\ninfo")
+redis_stats=$(echo "$query_stats" | nc -w1 $host $port)
+
+if [[ $? -ne 0 ]] || [[ -z $redis_stats ]]; then
   echo "CRITICAL - could not connect to redis on ${host}:${port}"
-  exit 2
+  exit $STATE_CRITICAL
 fi
 
-used_memory_human=$(echo "$output" | awk -F ":" '$1 == "used_memory_human" {print $2}' | sed -e 's/\r//')
-instantaneous_ops_per_sec=$(echo "$output" | awk -F : '$1 == "instantaneous_ops_per_sec" {print $2}')
+if [[ $redis_stats = "-NOAUTH"* ]]; then
+  echo "UNKNOWN - Authentication required on ${host}:${port}"
+  exit $STATE_UNKNOWN
+fi
 
-if [[ -z $used_memory_human ]] || [[ -z $instantaneous_ops_per_sec ]]; then
+if [[ $redis_stats = "-WRONGPASS"* ]]; then
+  echo "UNKNOWN - Authentication failure on ${host}:${port}"
+  exit $STATE_UNKNOWN
+fi
+
+used_memory=$(echo "$redis_stats" | awk -F ":" '$1 == "used_memory" {print $2}' | sed -e 's/\r//')
+used_memory_human=$(echo "$redis_stats" | awk -F ":" '$1 == "used_memory_human" {print $2}' | sed -e 's/\r//')
+instantaneous_ops_per_sec=$(echo "$redis_stats" | awk -F : '$1 == "instantaneous_ops_per_sec" {print $2}')
+
+if [[ -z $used_memory ]] || [[ -z $used_memory_human ]] || [[ -z $instantaneous_ops_per_sec ]]; then
   echo "CRITICAL - could not fetch redis stats on ${host}:${port}"
-  exit 2
+  exit $STATE_CRITICAL
+fi
+
+if [[ -n $critical ]] && (( $(bc -l <<< "$used_memory >= $(bc -l <<< "$critical * 1024 * 1024") ") )); then
+  echo "CRITICAL - Redis Memory: ${used_memory_human}, OPs/s: ${instantaneous_ops_per_sec}"
+  exit $STATE_CRITICAL
+fi
+
+if [[ -n $warning ]] && (( $(bc -l <<< "$used_memory >= $(bc -l <<< "$warning * 1024 * 1024") ") )); then
+  echo "WARNING - Redis Memory: ${used_memory_human}, OPs/s: ${instantaneous_ops_per_sec}"
+  exit $STATE_WARNING
 fi
 
 echo "OK - Redis Memory: ${used_memory_human}, Ops/s: ${instantaneous_ops_per_sec}"
-exit 0
+exit $STATE_OK
