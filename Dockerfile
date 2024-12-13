@@ -89,8 +89,6 @@ RUN dnf -y --refresh upgrade && \
     dnf -y remove automake gcc gcc-c++ gd-devel kernel-devel make openssl-devel-engine shadow-utils tar unzip xz && \
     dnf -y autoremove && dnf -y clean all && rm -rf /tmp/*
 
-# Root cert required for SMTP Relay
-ADD --chmod=0644 https://www.thawte.com/roots/thawte_Premium_Server_CA.pem /etc/postfix/cacert.pem
 # Install NCPA
 ADD --chmod=0755 https://raw.githubusercontent.com/NagiosEnterprises/ncpa/v${NCPA_VERSION}/client/check_ncpa.py /usr/local/nagios/libexec/
 # Install check-mongodb-plugins
